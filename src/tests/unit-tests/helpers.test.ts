@@ -24,12 +24,12 @@ describe('test validateInput function', () => {
 
   test('shoud return error if year is not current', () => {
     testData.year = 2020;
-    expect(validateInput(testData)).toThrow(new Error(`Year provided not the current, received: ${ testData.year }`));
+    expect(() => validateInput(testData)).toThrow(new Error(`Year provided not the current, received: ${ testData.year }`));
   });
 
   test('should return error if the country is not supported', () => {
     testData.country = 'KG';
-    expect(validateInput(testData)).toThrow(`Country provided is not supported, received: ${ testData.country }`)
+    expect(() => validateInput(testData)).toThrow(`Country provided is not supported, received: ${ testData.country }`)
   });
 });
 
