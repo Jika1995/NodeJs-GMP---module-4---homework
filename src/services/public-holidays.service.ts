@@ -10,7 +10,7 @@ export const getListOfPublicHolidays = async (year: number, country: string): Pr
 
   try {
     const { data: publicHolidays } = await axios.get<PublicHoliday[]>(
-      `${PUBLIC_HOLIDAYS_API_URL}/PublicHolidays/${year}/${country}`,
+      `${ PUBLIC_HOLIDAYS_API_URL }/PublicHolidays/${ year }/${ country }`,
     );
     return publicHolidays.map((holiday) => shortenPublicHoliday(holiday));
   } catch (error) {
@@ -22,7 +22,7 @@ export const checkIfTodayIsPublicHoliday = async (country: string) => {
   validateInput({ country });
 
   try {
-    const { status } = await axios.get<PublicHoliday[]>(`${PUBLIC_HOLIDAYS_API_URL}/IsTodayPublicHoliday/${country}`);
+    const { status } = await axios.get<PublicHoliday[]>(`${ PUBLIC_HOLIDAYS_API_URL }/IsTodayPublicHoliday/${ country }`);
     return status === 200;
   } catch (error) {
     return false;
@@ -34,7 +34,7 @@ export const getNextPublicHolidays = async (country: string): Promise<PublicHoli
 
   try {
     const { data: publicHolidays } = await axios.get<PublicHoliday[]>(
-      `${PUBLIC_HOLIDAYS_API_URL}/NextPublicHolidays/${country}`,
+      `${ PUBLIC_HOLIDAYS_API_URL }/NextPublicHolidays/${ country }`,
     );
     return publicHolidays.map((holiday) => shortenPublicHoliday(holiday));
   } catch (error) {
