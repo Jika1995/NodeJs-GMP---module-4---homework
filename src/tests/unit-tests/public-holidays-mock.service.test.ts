@@ -37,7 +37,7 @@ jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('Get list of public holidays', () => {
-  test('should return a list of public holidays', async () => {
+  it('should return a list of public holidays', async () => {
     mockedAxios.get.mockResolvedValue({ data: HOLIDAYS_MOCK });
 
     const holidaysListResponse = await getListOfPublicHolidays(TEST_DATA.year, TEST_DATA.country);

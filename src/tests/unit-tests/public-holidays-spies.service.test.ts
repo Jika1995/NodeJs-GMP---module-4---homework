@@ -35,7 +35,7 @@ const HOLIDAYS_MOCK = [
 ]
 
 describe('Get list of public holidays', () => {
-  test('should return a list of public holidays', async () => {
+  it('should return a list of public holidays', async () => {
     //mock response from API
     jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve({ data: HOLIDAYS_MOCK }));
 
@@ -45,7 +45,7 @@ describe('Get list of public holidays', () => {
     expect(holidaysListResponse).toEqual(shortHolidaysMock);
   });
 
-  test('should call API with proper arguments', async () => {
+  it('should call API with proper arguments', async () => {
     //setup spy on axios.get() to check what args were passed to it
     const axiosGetSpy = jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve({ data: HOLIDAYS_MOCK }));
 
@@ -61,7 +61,7 @@ describe('Get list of public holidays', () => {
 });
 
 describe('Check if today is public holiday', () => {
-  test('should call API with proper arguments', async () => {
+  it('should call API with proper arguments', async () => {
     const axiosGetSpy = jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve({ status: 200 }));
 
     await checkIfTodayIsPublicHoliday(TEST_DATA.country);
@@ -72,7 +72,7 @@ describe('Check if today is public holiday', () => {
 })
 
 describe('Get next public holidays', () => {
-  test('should return a list of next public holidays', async () => {
+  it('should return a list of next public holidays', async () => {
     //mock response from API
     jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve({ data: HOLIDAYS_MOCK }));
 
@@ -82,7 +82,7 @@ describe('Get next public holidays', () => {
     expect(nextHolidaysResponse).toEqual(shortHolidaysMock);
   });
 
-  test('should call API with proper arguments', async () => {
+  it('should call API with proper arguments', async () => {
     const axiosGetSpy = jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve({ data: HOLIDAYS_MOCK }));
 
     await getNextPublicHolidays(TEST_DATA.country);

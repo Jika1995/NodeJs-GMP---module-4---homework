@@ -18,23 +18,29 @@ const testPublicHoliday = {
 };
 
 describe('test validateInput function', () => {
-  test('shoud return true if data is correct', () => {
+  it('shoud return true if data is correct', () => {
     expect(validateInput(testData)).toBeTruthy();
   });
 
-  test('shoud return error if year is not current', () => {
-    testData.year = 2020;
-    expect(() => validateInput(testData)).toThrow(new Error(`Year provided not the current, received: ${ testData.year }`));
+  it('shoud return error if year is not current', () => {
+    const localTestData = {
+      ...testData,
+      year: 2020,
+    }
+    expect(() => validateInput(localTestData)).toThrow(new Error(`Year provided not the current, received: ${ localTestData.year }`));
   });
 
-  test('should return error if the country is not supported', () => {
-    testData.country = 'KG';
-    expect(() => validateInput(testData)).toThrow(`Country provided is not supported, received: ${ testData.country }`)
+  it('should return error if the country is not supported', () => {
+    const localTestData = {
+      ...testData,
+      country: 'KG',
+    }
+    expect(() => validateInput(localTestData)).toThrow(`Country provided is not supported, received: ${ localTestData.country }`)
   });
 });
 
 describe('test shortenPublicHoliday function', () => {
-  test('should return correct shorten info', () => {
+  it('should return correct shorten info', () => {
     expect(shortenPublicHoliday(testPublicHoliday)).toEqual(
       {
         name: testPublicHoliday.name,

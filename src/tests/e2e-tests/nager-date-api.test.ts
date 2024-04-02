@@ -3,7 +3,7 @@ import { PUBLIC_HOLIDAYS_API_URL } from '../../config';
 
 describe('Nager Date API', () => {
   describe('/countryInfo', () => {
-    test('should return 200 and country info', async () => {
+    it('should return 200 and country info', async () => {
       const testCountryCode = 'KG';
       const { status, body } = await request(PUBLIC_HOLIDAYS_API_URL).get(`/CountryInfo/${ testCountryCode }`);
 
@@ -19,7 +19,7 @@ describe('Nager Date API', () => {
   });
 
   describe('/longWeekend', () => {
-    test('should return 200 and long Weekend info', async () => {
+    it('should return 200 and long Weekend info', async () => {
       const testCountryCode = 'FR';
       const testYear = 2024;
       const { status, body } = await request(PUBLIC_HOLIDAYS_API_URL).get(`/LongWeekend/${ testYear }/${ testCountryCode }`);

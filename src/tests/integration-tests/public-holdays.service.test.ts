@@ -2,10 +2,12 @@ import axios from "axios";
 import { checkIfTodayIsPublicHoliday, getListOfPublicHolidays, getNextPublicHolidays } from "../../services/public-holidays.service";
 import { PublicHolidayShort } from "../../types";
 
+const testCountryCode = 'FR';
+
 describe('Get list of public holidays', () => {
 
-  test('should return an array with proper fields', async () => {
-    const result: PublicHolidayShort[] = await getListOfPublicHolidays(2024, 'FR');
+  it('should return an array with proper fields', async () => {
+    const result: PublicHolidayShort[] = await getListOfPublicHolidays(2024, testCountryCode);
 
     expect(Array.isArray(result)).toBe(true);
     result.forEach((holiday) => {
@@ -26,8 +28,8 @@ describe('Get list of public holidays', () => {
 });
 
 describe('Get list of next public holidays', () => {
-  test('should return an array with proper fields', async () => {
-    const result: PublicHolidayShort[] = await getNextPublicHolidays('FR');
+  it('should return an array with proper fields', async () => {
+    const result: PublicHolidayShort[] = await getNextPublicHolidays(testCountryCode);
 
     expect(Array.isArray(result)).toBe(true);
     result.forEach((holiday) => {
@@ -40,16 +42,16 @@ describe('Get list of next public holidays', () => {
 
 describe('Check if today is public holiday', () => {
 
-  test('should return true if it is holiday', async () => {
+  it('should return true if it is holiday', async () => {
 
     const result = await checkIfTodayIsPublicHoliday('GB'); //29 mars today is holiday in Great Britain
 
     expect(result).toBeTruthy();
   });
 
-  test('should return false if it is not holiday', async () => {
+  it('should return false if it is not holiday', async () => {
 
-    const result = await checkIfTodayIsPublicHoliday('FR'); //29 mars today is not holiday in France
+    const result = await checkIfTodayIsPublicHoliday(testCountryCode); //29 mars today is not holiday in France
 
     expect(result).toBeFalsy();
   })
