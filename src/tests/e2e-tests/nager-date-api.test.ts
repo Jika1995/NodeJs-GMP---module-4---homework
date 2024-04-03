@@ -5,6 +5,7 @@ describe('Nager Date API', () => {
   describe('/countryInfo', () => {
     it('should return 200 and country info', async () => {
       const testCountryCode = 'KG';
+
       const { status, body } = await request(PUBLIC_HOLIDAYS_API_URL).get(`/CountryInfo/${ testCountryCode }`);
 
       expect(status).toEqual(200);
@@ -20,8 +21,9 @@ describe('Nager Date API', () => {
 
   describe('/longWeekend', () => {
     it('should return 200 and long Weekend info', async () => {
-      const testCountryCode = 'FR';
+      const testCountryCode = 'KZ';
       const testYear = 2024;
+
       const { status, body } = await request(PUBLIC_HOLIDAYS_API_URL).get(`/LongWeekend/${ testYear }/${ testCountryCode }`);
 
       expect(status).toEqual(200);
@@ -35,4 +37,4 @@ describe('Nager Date API', () => {
       })
     });
   })
-})
+});

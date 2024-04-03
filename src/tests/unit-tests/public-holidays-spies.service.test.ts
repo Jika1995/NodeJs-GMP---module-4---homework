@@ -53,6 +53,12 @@ describe('Get list of public holidays', () => {
 
     //expect that axios.get() is called with proper args
     expect(axiosGetSpy).toHaveBeenCalledWith(`${ PUBLIC_HOLIDAYS_API_URL }/PublicHolidays/${ TEST_DATA.year }/${ TEST_DATA.country }`)
+  });
+
+  it('handling server errors', async () => {
+    jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve({ status: 500 }));
+    const holidaysListResponse = await getListOfPublicHolidays(TEST_DATA.year, TEST_DATA.country);
+    expect(holidaysListResponse).toEqual([])
   })
 
   afterEach(() => {
@@ -68,6 +74,12 @@ describe('Check if today is public holiday', () => {
 
     //expect that axios.get() is called with proper args
     expect(axiosGetSpy).toHaveBeenCalledWith(`${ PUBLIC_HOLIDAYS_API_URL }/IsTodayPublicHoliday/${ TEST_DATA.country }`)
+  });
+
+  it('handling server errors', async () => {
+    jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve({ status: 500 }));
+    const holidaysListResponse = await checkIfTodayIsPublicHoliday(TEST_DATA.country);
+    expect(holidaysListResponse).toEqual(false)
   })
 })
 
@@ -90,4 +102,10 @@ describe('Get next public holidays', () => {
     //expect that axios.get() is called with proper args
     expect(axiosGetSpy).toHaveBeenCalledWith(`${ PUBLIC_HOLIDAYS_API_URL }/NextPublicHolidays/${ TEST_DATA.country }`)
   });
+
+  it('handling server errors', async () => {
+    jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve({ status: 500 }));
+    const holidaysListResponse = await getNextPublicHolidays(TEST_DATA.country);
+    expect(holidaysListResponse).toEqual([])
+  })
 })

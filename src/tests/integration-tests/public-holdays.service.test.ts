@@ -16,15 +16,6 @@ describe('Get list of public holidays', () => {
       expect(typeof holiday.date).toBe('string')
     })
   });
-
-  // test('should handle server errors', async () => {
-  //   mockedAxios.get.mockRejectedValueOnce({status: 500});
-
-  //   const result = await getListOfPublicHolidays(2024, 'FR');
-
-  //   expect(result).toEqual([]);
-  // });
-
 });
 
 describe('Get list of next public holidays', () => {
